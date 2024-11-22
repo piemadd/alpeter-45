@@ -8,7 +8,7 @@ const run = async () => {
   const server = FeedGenerator.create({
     port: 3000,
     listenhost: '0.0.0.0',
-    sqliteLocation: ':memory:',
+    sqliteLocation: '/dbdir/posts.sqlite',
     subscriptionEndpoint: 'wss://bsky.network',
     publisherDid:
       "did:plc:zmvv42wlsta462gsewywlvfl",
