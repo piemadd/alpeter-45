@@ -33,6 +33,7 @@ export class FirehoseSubscription extends FirehoseSubscriptionBase {
       })
       .map((create) => {
         // map alf-related posts to a db row
+        console.log(create.cid, create.record.text)
         return {
           uri: create.uri,
           cid: create.cid,
