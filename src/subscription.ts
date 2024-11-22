@@ -1,4 +1,3 @@
-// @ts-ignore
 import {
   OutputSchema as RepoEvent,
   isCommit,
@@ -21,7 +20,9 @@ export class FirehoseSubscription extends FirehoseSubscriptionBase {
 
         // in image alt text
         if (create.record.embed && create.record.embed['$type'] == 'app.bsky.embed.images') {
+          // @ts-ignore
           for (let i = 0; i < create.record.embed.images.length; i++) {
+            // @ts-ignore
             const image = create.record.embed.images[i];
             if (image.alt && image.alt.match(re)) return true;
           }
