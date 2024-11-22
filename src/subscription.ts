@@ -20,12 +20,14 @@ export class FirehoseSubscription extends FirehoseSubscriptionBase {
 
         // in image alt text
         if (create.record.embed && create.record.embed['$type'] == 'app.bsky.embed.images') {
-          /*
           for (let i = 0; i < create.record.embed.images.length; i++) {
+            const image = create.record.embed.images[i];
+            if (image.alt && image.alt.match(re)) return true;
           }
-          */
-         console.log(create.record.embed)
         }
+
+        // nothing
+        return false;
       })
       .map((create) => {
         // map alf-related posts to a db row
