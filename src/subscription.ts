@@ -2,7 +2,9 @@ import {
   OutputSchema as RepoEvent,
   isCommit,
 } from './lexicon/types/com/atproto/sync/subscribeRepos'
-import { FirehoseSubscriptionBase, getOpsByType } from './util/subscription'
+import { FirehoseSubscriptionBase, getOpsByType } from './util/subscription';
+
+const re = new RegExp("al-*peter-*45")
 
 export class FirehoseSubscription extends FirehoseSubscriptionBase {
   async handleEvent(evt: RepoEvent) {
@@ -10,18 +12,20 @@ export class FirehoseSubscription extends FirehoseSubscriptionBase {
 
     const ops = await getOpsByType(evt)
 
-    // This logs the text of every post off the firehose.
-    // Just for fun :)
-    // Delete before actually using
-    for (const post of ops.posts.creates) {
-      console.log(post.record.text)
-    }
-
     const postsToDelete = ops.posts.deletes.map((del) => del.uri)
     const postsToCreate = ops.posts.creates
       .filter((create) => {
-        // only alf-related posts
-        return create.record.text.toLowerCase().includes('alf')
+        // in post text
+        if (create.record.text.toLowerCase().match(re)) return true;
+
+        // in image alt text
+        if (create.record.embed && create.record.embed['$type'] == 'app.bsky.embed.images') {
+          /*
+          for (let i = 0; i < create.record.embed.images.length; i++) {
+          }
+          */
+         console.log(create.record.embed)
+        }
       })
       .map((create) => {
         // map alf-related posts to a db row
