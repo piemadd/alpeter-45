@@ -1,3 +1,4 @@
+// @ts-ignore
 import {
   OutputSchema as RepoEvent,
   isCommit,
