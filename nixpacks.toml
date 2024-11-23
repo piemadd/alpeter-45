@@ -1,3 +1,4 @@
+# nixpacks.toml
 providers = ['...', 'node']
 
 [phase.setup]
