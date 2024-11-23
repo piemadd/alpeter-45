@@ -4,7 +4,7 @@ import {
 } from './lexicon/types/com/atproto/sync/subscribeRepos'
 import { FirehoseSubscriptionBase, getOpsByType } from './util/subscription';
 
-const re = new RegExp("al-*pet(er|ah)-*(45)*")
+const re = new RegExp("\s*al-*pet(er|ah)-*(45)*")
 
 export class FirehoseSubscription extends FirehoseSubscriptionBase {
   async handleEvent(evt: RepoEvent) {
