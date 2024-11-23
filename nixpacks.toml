@@ -1,4 +1,4 @@
 providers = ['...', 'node']
 
 [phase.setup]
-aptPkgs = ['curl', 'wget', 'sqlite3']
+aptPkgs = ['curl', 'wget', 'sqlite3' ]
